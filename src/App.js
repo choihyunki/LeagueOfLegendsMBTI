@@ -12,7 +12,7 @@ function App() {
 
   useEffect(() => {
     if (window.Kakao && !window.Kakao.isInitialized()) {
-      window.Kakao.init("YOUR_KAKAO_JS_KEY");
+      window.Kakao.init("3dbf345bea6c1e7494972fd8b79b45aa");
     }
   }, []);
 
