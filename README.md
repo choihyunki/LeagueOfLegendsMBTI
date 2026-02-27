@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# 🎮 LoL MBTI Lab
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> **"당신의 성격과 가장 닮은 롤 챔피언은 누구일까요?"** > 36개의 심층 질문을 통해 분석하는 리그 오브 레전드 성격 유형 리포트 서비스
 
-## Available Scripts
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## ✨ 주요 기능 (Key Features)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **심층 MBTI 테스트**: 36문항의 정교한 질문을 통해 16가지 성격 유형 도출
+- **챔피언 매칭**: 리그 오브 레전드 세계관(Lore)과 성격 지표를 결합한 최적의 캐릭터 매칭
+- **포지션 추천**: 유저의 성향에 가장 적합한 인게임 라인(Top, Mid, Jg, Ad, Sup) 제안
+- **시너지 분석**: 매칭된 챔피언과 게임 내에서 시너지가 좋은 '찰떡궁합' 리포트 제공
+- **소셜 공유**: 카카오톡 및 링크 복사 기능을 통한 결과 공유 활성화
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 🛠 기술 스택 (Tech Stack)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Frontend**: React.js
+- **Styling**: Inline Styles & CSS-in-JS (Modern UI / Dark Mode)
+- **Deployment**: Vercel
+- **Integration**: Kakao SDK, LoL Universe API (Story Links)
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📈 수익화 전략 (Monetization)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Google AdSense**: 결과 페이지 및 메인 페이지 광고 최적화 배치를 통한 수익화
+- **YouTube Synergy**: '최현기의 LoL Lore 연구소' 유튜브 채널과 연동하여 체류 시간 증대 및 트래픽 선순환
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 📁 프로젝트 구조 (Folder Structure)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```text
+src/
+ ├── components/
+ │    ├── MainHome.js    # 메인 랜딩 페이지
+ │    ├── TestPage.js    # 질문 진행 페이지 (Progress Bar 포함)
+ │    ├── ResultPage.js  # 성격 리포트 및 공유 페이지
+ │    ├── PolicyPage.js  # 개인정보 처리방침
+ │    └── ContactPage.js # 문의하기 페이지
+ ├── data.js             # 질문 데이터 및 16개 유형별 결과 로직
+ └── App.js              # 라우팅 및 전역 상태 관리
+```
