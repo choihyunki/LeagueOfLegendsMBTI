@@ -94,12 +94,22 @@ function App() {
           <span onClick={() => setPage("contact")} style={appStyles.link}>
             문의하기
           </span>
-          {/* 요청하신 대로 '홈으로' 링크 제거 */}
         </div>
-        <p style={appStyles.disclaimer}>
-          본 서비스는 라이엇 게임즈의 공식 서비스가 아니며, 사용된 모든 캐릭터
-          저작권은 라이엇 게임즈에 있습니다.
-        </p>
+
+        {/* 라이엇 게임즈 공식 가이드라인 문구 반영 */}
+        <div style={appStyles.disclaimerBox}>
+          <p style={appStyles.disclaimerText}>
+            [LoL MBTI Lab] isn't endorsed by Riot Games and doesn't reflect the
+            views or opinions of Riot Games or anyone officially involved in
+            producing or managing League of Legends. League of Legends and Riot
+            Games are trademarks or registered trademarks of Riot Games, Inc.
+            League of Legends © Riot Games, Inc.
+          </p>
+          <p style={appStyles.disclaimerKR}>
+            본 서비스는 라이엇 게임즈의 공식 서비스가 아니며, 리그 오브 레전드
+            및 라이엇 게임즈는 Riot Games, Inc.의 상표 또는 등록 상표입니다.
+          </p>
+        </div>
       </footer>
     </div>
   );
@@ -131,6 +141,25 @@ const appStyles = {
     maxWidth: "500px",
     margin: "0 auto",
     lineHeight: "1.4",
+  },
+  disclaimerBox: {
+    marginTop: "20px",
+    padding: "15px",
+    borderTop: "1px solid #1e293b",
+    maxWidth: "800px",
+    margin: "20px auto 0",
+  },
+  disclaimerText: {
+    fontSize: "0.7rem",
+    color: "#475569",
+    lineHeight: "1.4",
+    textAlign: "justify",
+    marginBottom: "8px",
+  },
+  disclaimerKR: {
+    fontSize: "0.7rem",
+    color: "#475569",
+    opacity: 0.8,
   },
 };
 

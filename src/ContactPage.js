@@ -15,13 +15,7 @@ const ContactPage = ({ onBack }) => {
 
         <div style={styles.card}>
           <p>
-            📧 <strong>Email:</strong> your-email@gmail.com
-          </p>
-          <p>
-            📺 <strong>YouTube:</strong>{" "}
-            <a href="현기님유튜브링크" style={styles.link}>
-              최현기의 LoL Lore 연구소
-            </a>
+            📧 <strong>Email:</strong> shcoolbus123@gmail.com
           </p>
         </div>
 

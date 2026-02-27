@@ -30,7 +30,6 @@
 ## 📈 수익화 전략 (Monetization)
 
 - **Google AdSense**: 결과 페이지 및 메인 페이지 광고 최적화 배치를 통한 수익화
-- **YouTube Synergy**: '최현기의 LoL Lore 연구소' 유튜브 채널과 연동하여 체류 시간 증대 및 트래픽 선순환
 
 ---
 
@@ -47,3 +46,11 @@ src/
  ├── data.js             # 질문 데이터 및 16개 유형별 결과 로직
  └── App.js              # 라우팅 및 전역 상태 관리
 ```
+
+## 📜 Legal Disclaimer
+
+**[LoL MBTI Lab]** isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.
+
+- 본 서비스는 라이엇 게임즈의 지적 재산권 가이드라인(Legal Jib)을 준수하여 제작된 팬 메이드 콘텐츠입니다.
+- 서비스 내 사용된 캐릭터의 명칭 및 세계관 데이터의 모든 권리는 Riot Games, Inc.에 있습니다.
+- 본 프로젝트는 상업적 판매 목적이 아닌, 팬 커뮤니티 활동 및 정보 제공을 목적으로 합니다.
