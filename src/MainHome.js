@@ -1,12 +1,11 @@
 import React from "react";
 
-const MainHome = ({ onStart }) => {
+const MainHome = ({ onStart, onWorldCup }) => {
   return (
     <div style={styles.container}>
-      {/* 1. 이미지 제목 (누르면 홈으로 리턴) */}
       <header style={styles.header}>
         <img
-          src="/LOLMBTI.png" // 제작하신 로고 이미지 경로
+          src="/LOLMBTI.png"
           alt="LoL MBTI 로고"
           style={styles.logoImage}
           onClick={() => window.location.reload()}
@@ -14,8 +13,7 @@ const MainHome = ({ onStart }) => {
       </header>
 
       <main style={styles.main}>
-        {/* 장식용 아이콘이나 간단한 텍스트 요소 */}
-        <div style={styles.tag}>#성격유형테스트 #리그오브레전드</div>
+        <div style={styles.tag}>#성격유형테스트 #롤이상형월드컵</div>
 
         <h1 style={styles.mainTitle}>
           내 플레이 스타일은
@@ -24,22 +22,19 @@ const MainHome = ({ onStart }) => {
         </h1>
 
         <p style={styles.subTitle}>
-          36개의 질문을 통해 분석하는
+          38개의 질문으로 분석하는 나의 MBTI와
           <br />
-          나의 성격 유형과 최적의 포지션 리포트
+          172개 챔피언 중 최고의 원픽을 뽑는 월드컵까지!
         </p>
 
-        {/* 2. 버튼 섹션 */}
         <div style={styles.buttonGroup}>
           <button style={styles.startButton} onClick={onStart}>
             지금 바로 검사하기
           </button>
 
-          <button
-            style={styles.infoButton}
-            onClick={() => alert("준비 중인 기능입니다!")}
-          >
-            서비스 소개
+          {/* 1. 서비스 소개 대신 월드컵 버튼으로 변경 */}
+          <button style={styles.worldCupButton} onClick={onWorldCup}>
+            🏆 챔피언 이상형 월드컵 시작
           </button>
         </div>
       </main>
@@ -141,6 +136,17 @@ const styles = {
     marginTop: "5px",
     fontSize: "0.75rem",
     opacity: 0.7,
+  },
+  worldCupButton: {
+    padding: "16px",
+    fontSize: "1rem",
+    backgroundColor: "transparent",
+    color: "#fbbf24", // 황금색
+    border: "1px solid #fbbf24",
+    borderRadius: "16px",
+    cursor: "pointer",
+    fontWeight: "700",
+    transition: "all 0.2s",
   },
 };
 

@@ -5,6 +5,7 @@ import ResultPage from "./ResultPage";
 import PolicyPage from "./PolicyPage";
 import ContactPage from "./ContactPage";
 import { results } from "./data";
+import WorldCup from "./WorldCup"; // 1. 월드컵 컴포넌트 추가
 
 function App() {
   const [page, setPage] = useState("home");
@@ -71,8 +72,14 @@ function App() {
   return (
     <div style={appStyles.container}>
       <main style={appStyles.mainContent}>
-        {page === "home" && <MainHome onStart={() => setPage("test")} />}
+        {page === "home" && (
+          <MainHome
+            onStart={() => setPage("test")}
+            onWorldCup={() => setPage("worldcup")}
+          />
+        )}
         {page === "test" && <TestPage onFinish={handleFinish} />}
+        {page === "worldcup" && <WorldCup onBack={() => setPage("home")} />}
         {page === "result" && (
           <ResultPage
             mbti={mbti}
