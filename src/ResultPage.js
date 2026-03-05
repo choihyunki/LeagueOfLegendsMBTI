@@ -1,8 +1,8 @@
 import React from "react";
-import { results } from "./data/index";
+import { allResults } from "./data/index";
 
 const ResultPage = ({ mbti, onShareKakao, onCopyLink }) => {
-  const result = results[mbti];
+  const result = allResults[mbti];
 
   // 1. 이미지 파일명을 위한 소문자 변환 (data.js에 추가할 nameEn 사용)
   const characterImage = `/images/${result.nameEn}.avif`;
