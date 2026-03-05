@@ -4,7 +4,9 @@ import TestPage from "./TestPage";
 import ResultPage from "./ResultPage";
 import PolicyPage from "./PolicyPage";
 import ContactPage from "./ContactPage";
-import WorldCup from "./WorldCup"; // 1. 월드컵 컴포넌트 추가
+import WorldCup from "./WorldCup";
+// 1. data.js 대신 통합된 데이터 index에서 allResults와 질문 데이터를 가져옵니다.
+import { allResults, allQuestions } from "./data/index";
 
 function App() {
   const [page, setPage] = useState("home");
@@ -18,9 +20,19 @@ function App() {
 
   const handleFinish = (answers) => {
     const score = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
-    answers.forEach((ans) => {
-      const char = ans.choice === "a" ? ans.type[0] : ans.type[1];
-      score[char]++;
+
+    // 2. answers가 객체 { "1": "a", "2": "b" ... } 형태이므로 이에 맞게 순회합니다.
+    Object.keys(answers).forEach((id) => {
+      const questionId = parseInt(id);
+      // 36번 질문까지만 MBTI 점수에 반영 (37, 38은 포지션/스타일)
+      if (questionId <= 36) {
+        const choice = answers[id];
+        const question = allQuestions.find((q) => q.id === questionId);
+        if (question) {
+          const char = choice === "a" ? question.type[0] : question.type[1];
+          score[char]++;
+        }
+      }
     });
 
     const finalMbti =
@@ -28,8 +40,7 @@ function App() {
       (score.S >= score.N ? "S" : "N") +
       (score.T >= score.F ? "T" : "F") +
       (score.J >= score.P ? "J" : "P");
-    const userPos = answers[36];
-    const userStyle = answers[37];
+
     setMbti(finalMbti);
     setPage("result");
     window.scrollTo(0, 0);
@@ -37,13 +48,19 @@ function App() {
 
   const shareKakao = () => {
     if (!window.Kakao) return;
-    const result = results[mbti];
+
+    // 3. results 대신 allResults를 참조하고, 배열이므로 첫 번째 요소를 선택합니다.
+    const resultList = allResults[mbti];
+    const result = resultList
+      ? resultList[0]
+      : { chimp: "챔피언", nameEn: "vayne" };
+
     window.Kakao.Share.sendDefault({
       objectType: "feed",
       content: {
         title: `나의 롤 캐릭터는: ${result.chimp}`,
         description: `내 MBTI 성격과 딱 맞는 챔피언은 무엇일까? 지금 확인해보세요!`,
-        imageUrl: "https://your-site-url.com/logo.png",
+        imageUrl: `https://your-site-url.com/images/${result.nameEn}.avif`, // 실제 서버 주소로 변경 필요
         link: {
           mobileWebUrl: window.location.href,
           webUrl: window.location.href,
@@ -86,7 +103,6 @@ function App() {
             onCopyLink={copyLink}
           />
         )}
-        {/* Policy와 Contact 페이지에서 홈으로 가는 onBack 연결 */}
         {page === "policy" && <PolicyPage onBack={() => setPage("home")} />}
         {page === "contact" && <ContactPage onBack={() => setPage("home")} />}
       </main>
@@ -103,7 +119,6 @@ function App() {
           </span>
         </div>
 
-        {/* 라이엇 게임즈 공식 가이드라인 문구 반영 */}
         <div style={appStyles.disclaimerBox}>
           <p style={appStyles.disclaimerText}>
             [LoL MBTI Lab] isn't endorsed by Riot Games and doesn't reflect the
@@ -122,6 +137,7 @@ function App() {
   );
 }
 
+// appStyles 객체는 현기님 기존 코드와 동일 (유지)
 const appStyles = {
   container: {
     display: "flex",
@@ -142,13 +158,6 @@ const appStyles = {
   footerLinks: { marginTop: "12px", marginBottom: "12px" },
   link: { cursor: "pointer", color: "#94a3b8" },
   divider: { margin: "0 10px", color: "#1e293b" },
-  disclaimer: {
-    fontSize: "0.75rem",
-    opacity: 0.6,
-    maxWidth: "500px",
-    margin: "0 auto",
-    lineHeight: "1.4",
-  },
   disclaimerBox: {
     marginTop: "20px",
     padding: "15px",
@@ -163,11 +172,7 @@ const appStyles = {
     textAlign: "justify",
     marginBottom: "8px",
   },
-  disclaimerKR: {
-    fontSize: "0.7rem",
-    color: "#475569",
-    opacity: 0.8,
-  },
+  disclaimerKR: { fontSize: "0.7rem", color: "#475569", opacity: 0.8 },
 };
 
 export default App;
