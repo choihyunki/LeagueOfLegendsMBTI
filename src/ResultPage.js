@@ -3,6 +3,10 @@ import { results } from "./data";
 
 const ResultPage = ({ mbti, onShareKakao, onCopyLink }) => {
   const result = results[mbti];
+
+  // 1. 이미지 파일명을 위한 소문자 변환 (data.js에 추가할 nameEn 사용)
+  const characterImage = `/images/${result.nameEn}.avif`;
+
   const goHome = () => window.location.reload();
   const goStory = () =>
     result.storyUrl && window.open(result.storyUrl, "_blank");
@@ -12,25 +16,37 @@ const ResultPage = ({ mbti, onShareKakao, onCopyLink }) => {
       <header style={styles.header}>
         <p style={styles.topText}>당신의 성격과 가장 닮은 챔피언</p>
         <h1 style={styles.chimpName}>{result.chimp}</h1>
+
+        {/* --- 2. 캐릭터 이미지 영역 추가 --- */}
+        <div style={styles.imageContainer}>
+          <img
+            src={characterImage}
+            alt={result.chimp}
+            style={styles.image}
+            // 이미지 로딩 실패 시 기본 로고나 대체 이미지 처리
+            onError={(e) => {
+              e.target.src = "/logo.png";
+            }}
+          />
+        </div>
+        {/* ---------------------------- */}
+
         <div style={styles.mbtiBadge}>
           {mbti} | {result.line}
         </div>
       </header>
 
       <section style={styles.contentSection}>
-        {/* 1. 상세 성격 분석 */}
         <div style={styles.infoCard}>
           <h3 style={styles.cardTitle}>🔍 성격 분석</h3>
           <p style={styles.cardText}>{result.analysis}</p>
         </div>
 
-        {/* 2. 챔피언 배경 이야기 */}
         <div style={styles.infoCard}>
           <h3 style={styles.cardTitle}>📜 배경 스토리</h3>
           <p style={styles.cardText}>{result.lore}</p>
         </div>
 
-        {/* 3. 추천 플레이 스타일 및 궁합 */}
         <div style={styles.infoCard}>
           <h3 style={styles.cardTitle}>🎮 플레이 가이드</h3>
           <p style={styles.cardText}>
@@ -42,7 +58,6 @@ const ResultPage = ({ mbti, onShareKakao, onCopyLink }) => {
         </div>
       </section>
 
-      {/* 버튼 영역 */}
       <div style={styles.actionArea}>
         <button onClick={goStory} style={styles.storyBtn}>
           📖 {result.chimp} 세계관 더 깊이 알아보기
@@ -87,16 +102,43 @@ const styles = {
     flexDirection: "column",
     alignItems: "center",
   },
-  header: { textAlign: "center", marginBottom: "30px" },
+  header: {
+    textAlign: "center",
+    marginBottom: "30px",
+    width: "100%",
+    maxWidth: "500px",
+  },
   topText: { color: "#94a3b8", fontSize: "1rem", marginBottom: "5px" },
-  chimpName: { fontSize: "3rem", color: "#38bdf8", fontWeight: "800" },
+  chimpName: {
+    fontSize: "3rem",
+    color: "#38bdf8",
+    fontWeight: "800",
+    marginBottom: "15px",
+  },
+
+  // 3. 이미지 스타일 추가
+  imageContainer: {
+    width: "100%",
+    aspectRatio: "16 / 9", // 롤 일러스트 비율에 맞춤
+    borderRadius: "15px",
+    overflow: "hidden",
+    border: "3px solid #38bdf8",
+    boxShadow: "0 0 15px rgba(56, 189, 248, 0.4)",
+    marginBottom: "20px",
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover", // 이미지가 꽉 차도록 설정
+    display: "block",
+  },
+
   mbtiBadge: {
     display: "inline-block",
     padding: "5px 15px",
     borderRadius: "20px",
     border: "1px solid #38bdf8",
     color: "#38bdf8",
-    marginTop: "10px",
     fontWeight: "bold",
   },
   contentSection: {
@@ -149,6 +191,7 @@ const styles = {
     fontWeight: "bold",
     cursor: "pointer",
     fontSize: "0.9rem",
+    color: "#000",
   },
 };
 

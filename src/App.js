@@ -28,7 +28,8 @@ function App() {
       (score.S >= score.N ? "S" : "N") +
       (score.T >= score.F ? "T" : "F") +
       (score.J >= score.P ? "J" : "P");
-
+    const userPos = answers[36];
+    const userStyle = answers[37];
     setMbti(finalMbti);
     setPage("result");
     window.scrollTo(0, 0);
