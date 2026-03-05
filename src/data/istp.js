@@ -68,7 +68,6 @@ export const istpResults = [
   },
   {
     chimp: "파이크",
-    nameEn: "JUNGLE_SUP",
     nameEn: "pyke",
     pos: "JUNGLE_SUP",
     style: "ASSASSIN",
