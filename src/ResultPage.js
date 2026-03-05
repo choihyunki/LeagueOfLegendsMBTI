@@ -1,5 +1,5 @@
 import React from "react";
-import { results } from "./data";
+import { results } from "./data/index";
 
 const ResultPage = ({ mbti, onShareKakao, onCopyLink }) => {
   const result = results[mbti];

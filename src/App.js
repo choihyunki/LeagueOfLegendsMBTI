@@ -4,7 +4,6 @@ import TestPage from "./TestPage";
 import ResultPage from "./ResultPage";
 import PolicyPage from "./PolicyPage";
 import ContactPage from "./ContactPage";
-import { results } from "./data";
 import WorldCup from "./WorldCup"; // 1. 월드컵 컴포넌트 추가
 
 function App() {
