@@ -2,9 +2,19 @@ import React from "react";
 import { allResults } from "./data/index";
 
 const ResultPage = ({ mbti, onShareKakao, onCopyLink }) => {
-  const result = allResults[mbti];
+  const mbtiGroup = allResults[mbti];
 
-  // 1. 이미지 파일명을 위한 소문자 변환 (data.js에 추가할 nameEn 사용)
+  if (!mbtiGroup) {
+    return (
+      <div style={styles.container}>
+        <div style={{ color: "#fff", marginTop: "100px" }}>
+          데이터를 불러오는 중 오류가 발생했습니다. (MBTI: {mbti})
+        </div>
+      </div>
+    );
+  }
+
+  const result = mbtiGroup[0];
   const characterImage = `/images/${result.nameEn}.avif`;
 
   const goHome = () => window.location.reload();
@@ -17,22 +27,24 @@ const ResultPage = ({ mbti, onShareKakao, onCopyLink }) => {
         <p style={styles.topText}>당신의 성격과 가장 닮은 챔피언</p>
         <h1 style={styles.chimpName}>{result.chimp}</h1>
 
-        {/* --- 2. 캐릭터 이미지 영역 추가 --- */}
         <div style={styles.imageContainer}>
           <img
             src={characterImage}
             alt={result.chimp}
             style={styles.image}
-            // 이미지 로딩 실패 시 기본 로고나 대체 이미지 처리
             onError={(e) => {
-              e.target.src = "/logo.png";
+              const src = e.target.src;
+              if (src.endsWith(".avif")) {
+                e.target.src = src.replace(".avif", ".jpg");
+              } else if (src.endsWith(".jpg")) {
+                e.target.src = "/logo.png";
+              }
             }}
           />
         </div>
-        {/* ---------------------------- */}
 
         <div style={styles.mbtiBadge}>
-          {mbti} | {result.line}
+          {mbti} | {result.pos}
         </div>
       </header>
 
@@ -115,11 +127,9 @@ const styles = {
     fontWeight: "800",
     marginBottom: "15px",
   },
-
-  // 3. 이미지 스타일 추가
   imageContainer: {
     width: "100%",
-    aspectRatio: "16 / 9", // 롤 일러스트 비율에 맞춤
+    aspectRatio: "16 / 9",
     borderRadius: "15px",
     overflow: "hidden",
     border: "3px solid #38bdf8",
@@ -129,10 +139,9 @@ const styles = {
   image: {
     width: "100%",
     height: "100%",
-    objectFit: "cover", // 이미지가 꽉 차도록 설정
+    objectFit: "cover",
     display: "block",
   },
-
   mbtiBadge: {
     display: "inline-block",
     padding: "5px 15px",
