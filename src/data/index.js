@@ -15,6 +15,7 @@ import { esfjResults } from "./esfj";
 import { enfpResults } from "./enfp";
 import { enfjResults } from "./enfj";
 import { entpResults } from "./entp";
+
 export const allQuestions = questions;
 
 // 1. 모든 MBTI 결과를 하나의 객체로 관리

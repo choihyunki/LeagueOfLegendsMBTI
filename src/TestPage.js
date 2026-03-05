@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { allQuestions } from "./data"; // 쪼개진 데이터 구조에 맞춰 allQuestions로 변경
+import { allQuestions } from "./data/index";
 
 const TestPage = ({ onFinish }) => {
   const [currentIdx, setCurrentIdx] = useState(0);
