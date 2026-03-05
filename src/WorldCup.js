@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 // index.js에서 export한 allResults를 가져옵니다.
-import { allResults } from "./data/index";
+import { worldCupChamps } from "./data/worldcuplist";
 
 const WorldCup = ({ onBack }) => {
   const [gameList, setGameList] = useState([]);
@@ -8,55 +8,48 @@ const WorldCup = ({ onBack }) => {
   const [round, setRound] = useState(0);
   const [winner, setWinner] = useState(null);
 
-  // 1. 데이터 초기화: 172개 급 데이터에서 랜덤 16개 추출
   useEffect(() => {
-    // 모든 MBTI 배열을 하나로 합침
-    const allChamps = Object.values(allResults).flat();
-
-    // 중복 제거 (nameEn 기준)
-    const uniqueChamps = [];
-    const seen = new Set();
-
-    allChamps.forEach((champ) => {
-      if (!seen.has(champ.nameEn)) {
-        seen.add(champ.nameEn);
-        uniqueChamps.push(champ);
-      }
-    });
-
-    // 랜덤 셔플 후 16개 선택
-    const shuffled = uniqueChamps.sort(() => 0.5 - Math.random()).slice(0, 16);
+    // 2. MBTI 데이터를 합칠 필요 없이 바로 worldCupChamps 사용
+    // 공식 스펠링 기반 128강 설정
+    const shuffled = [...worldCupChamps]
+      .sort(() => 0.5 - Math.random())
+      .slice(0, 128);
 
     setGameList(shuffled);
-    setRound(16);
+    setRound(shuffled.length);
   }, []);
+  // 3. 이미지 로딩 실패 시 확장자 교체 로직
+  const handleImgError = (e) => {
+    const src = e.target.src;
+    if (src.endsWith(".avif")) {
+      // .avif 실패 시 .jpg로 시도
+      e.target.src = src.replace(".avif", ".jpg");
+    } else if (src.endsWith(".jpg")) {
+      // .jpg도 실패 시 기본 로고로 교체
+      e.target.src = "/logo.png";
+    }
+  };
 
-  // 2. 선택 핸들러
   const handleSelect = (selected) => {
     if (round === 1) return;
 
     const newNextRound = [...nextRound, selected];
 
-    // 현재 대결이 라운드의 마지막 대결일 때
     if (gameList.length <= 2) {
       if (round === 2) {
-        // 결승전 종료
         setWinner(selected);
         setRound(1);
       } else {
-        // 다음 라운드(8강, 4강 등)로 진출
         setGameList(newNextRound);
         setNextRound([]);
         setRound(round / 2);
       }
     } else {
-      // 다음 대진으로 이동 (현재 대결한 2명 제외)
       setGameList(gameList.slice(2));
       setNextRound(newNextRound);
     }
   };
 
-  // 우승자 화면
   if (winner) {
     return (
       <div style={styles.container}>
@@ -66,18 +59,17 @@ const WorldCup = ({ onBack }) => {
             src={`/images/${winner.nameEn}.avif`}
             alt={winner.chimp}
             style={styles.winnerImg}
-            onError={(e) => (e.target.src = "/logo.png")}
+            onError={handleImgError}
           />
           <h2 style={styles.winnerName}>{winner.chimp}</h2>
         </div>
         <button onClick={onBack} style={styles.backBtn}>
-          메인으로 돌아가기
+          메인으로
         </button>
       </div>
     );
   }
 
-  // 게임 진행 화면
   return (
     <div style={styles.container}>
       <header style={styles.header}>
@@ -90,14 +82,13 @@ const WorldCup = ({ onBack }) => {
       <div style={styles.vsContainer}>
         {gameList.length >= 2 && (
           <>
-            {/* 왼쪽 카드 */}
             <div style={styles.card} onClick={() => handleSelect(gameList[0])}>
               <div style={styles.imgWrapper}>
                 <img
                   src={`/images/${gameList[0].nameEn}.avif`}
                   alt="left"
                   style={styles.img}
-                  onError={(e) => (e.target.src = "/logo.png")}
+                  onError={handleImgError}
                 />
               </div>
               <div style={styles.nameTag}>{gameList[0].chimp}</div>
@@ -105,14 +96,13 @@ const WorldCup = ({ onBack }) => {
 
             <div style={styles.vsCircle}>VS</div>
 
-            {/* 오른쪽 카드 */}
             <div style={styles.card} onClick={() => handleSelect(gameList[1])}>
               <div style={styles.imgWrapper}>
                 <img
                   src={`/images/${gameList[1].nameEn}.avif`}
                   alt="right"
                   style={styles.img}
-                  onError={(e) => (e.target.src = "/logo.png")}
+                  onError={handleImgError}
                 />
               </div>
               <div style={styles.nameTag}>{gameList[1].chimp}</div>

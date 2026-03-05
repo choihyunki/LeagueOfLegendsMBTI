@@ -15,6 +15,7 @@ import { esfjResults } from "./esfj";
 import { enfpResults } from "./enfp";
 import { enfjResults } from "./enfj";
 import { entpResults } from "./entp";
+import { entjResults } from "./entj";
 
 export const allQuestions = questions;
 
@@ -35,6 +36,7 @@ export const allResults = {
   ENFP: enfpResults,
   ENFJ: enfjResults,
   ENTP: entpResults,
+  ENTJ: entjResults,
 };
 
 /**

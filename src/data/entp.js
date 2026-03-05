@@ -54,7 +54,7 @@ export const entpResults = [
     storyUrl: "https://universe.leagueoflegends.com/ko_KR/champion/ekko/",
   },
   {
-    chimp: "싱드",
+    chimp: "신지드",
     nameEn: "singed",
     pos: "TOP_MID",
     style: "TANKER",
@@ -143,5 +143,18 @@ export const entpResults = [
       "창 투척(Q)으로 표식을 남기고 쿠거로 변신해 급습하세요. 덫을 깔아 적의 동선을 파악하고 로밍으로 판을 흔드는 것을 즐기세요.",
     bestCombo: "레넥톤, 판테온, 탈리야",
     storyUrl: "https://universe.leagueoflegends.com/ko_KR/champion/nidalee/",
+  },
+  {
+    chimp: "문도 박사",
+    nameEn: "drmundo",
+    pos: "TOP_JUNGLE",
+    style: "TANKER",
+    analysis:
+      "어디로 튈지 모르는 독특한 사고방식의 소유자입니다. 남들이 뭐라 하든 자신만의 논리(의술?)를 펼치며 전장을 휘저어 놓는 모습이 인상적입니다.",
+    lore: "자운의 광기 어린 살인마에서 스스로를 의사라고 믿게 된 문도 박사는, 이제 환자(적)들을 '치료'하기 위해 거대한 식칼을 던지며 전장을 누빕니다.",
+    playstyle:
+      "오염된 식칼(Q)로 적을 끝까지 괴롭히고, 최후의 투여(R)로 엄청난 회복력을 보여주며 적진 한복판으로 '가고 싶은 대로' 들어가세요.",
+    bestCombo: "유미, 나미, 룰루",
+    storyUrl: "https://universe.leagueoflegends.com/ko_KR/champion/drmundo/",
   },
 ];
