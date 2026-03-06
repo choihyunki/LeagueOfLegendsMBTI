@@ -129,7 +129,7 @@ const styles = {
   },
   imageContainer: {
     width: "100%",
-    aspectRatio: "16 / 9",
+    aspectRatio: "4 / 3",
     borderRadius: "15px",
     overflow: "hidden",
     border: "3px solid #38bdf8",
@@ -140,6 +140,7 @@ const styles = {
     width: "100%",
     height: "100%",
     objectFit: "cover",
+    objectPositon: "center",
     display: "block",
   },
   mbtiBadge: {
